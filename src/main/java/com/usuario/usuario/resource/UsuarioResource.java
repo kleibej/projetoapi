@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -74,10 +75,11 @@ public class UsuarioResource implements CommandLineRunner  {
 		return usuarioPaginaRepository.findAll(PageRequest.of(numeroDaPagina, 10, Direction.ASC, "id"));
 	}
 	
+	
 	@GetMapping("/lista-usuarios")
 	@ApiOperation(value="Retorna lista de usuarios")
 	public List<Usuario> listaUsuarios(){
-		return usuarioRepository.findAll();
+		return usuarioRepository.findAll(Sort.by(Direction.ASC, "id"));
 	}
 	
 	@PostMapping("/salva-usuario")
