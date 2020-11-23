@@ -1,0 +1,6 @@
+com\usuario\usuario\repository\UsuarioRepository.class
+com\usuario\usuario\resource\UsuarioResource.class
+com\usuario\usuario\models\Usuario.class
+com\usuario\usuario\UsuarioApplication.class
+com\usuario\usuario\config\SwaggerConfig.class
+com\usuario\usuario\repository\UsuarioPaginaRepository.class
