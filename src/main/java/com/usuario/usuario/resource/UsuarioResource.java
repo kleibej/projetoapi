@@ -41,8 +41,9 @@ public class UsuarioResource implements CommandLineRunner  {
 	@Autowired
 	UsuarioPaginaRepository usuarioPaginaRepository;
 	
-	//lista para inserir os dados da csv
+	//lista que vai guardar os dados da csv
 	List<Usuario> usuarios = new ArrayList<>();
+	
 	
 	//Trata o csv e coloca em uma lista
 	@Override
@@ -53,6 +54,8 @@ public class UsuarioResource implements CommandLineRunner  {
 	    int y;
 	    char sexo;
 	    List<String[]> pessoas = csvReader.readAll();
+	    //limpa a lista pra inserir a csv quantas vezes quiser
+	    usuarios.clear();
 	    Usuario p; 
 	    for (String[] pessoa : pessoas) {
 	    	sexo = ' ';
@@ -91,8 +94,10 @@ public class UsuarioResource implements CommandLineRunner  {
 	//insere a lista em que esta o csv
 	@PostMapping("/salva-usuarios")
 	@ApiOperation(value="Salva os dados da csv")
-	public void salvaUsuarios() {
+	public void salvaUsuarios() throws Exception {
 		usuarioRepository.saveAll(usuarios);
+		//chama a run e deixa armazenada a csv novamente
+		run();
 	}
 	
 	@DeleteMapping("/deleta-usuario")
